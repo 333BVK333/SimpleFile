@@ -59,6 +59,8 @@ button:hover {
     margin-top: 20px;
     font-size: 18px;
     color: #212529;
+    word-wrap: break-word; /* This will wrap long text */
+    overflow-wrap: break-word; /* This will ensure that long words break and wrap onto the next line */
 }
 
 #fileList {
@@ -75,11 +77,14 @@ button:hover {
     padding: 10px 20px;
     background-color: #4CAF50;
     color: white;
+    overflow: hidden;
     text-decoration: none;
     font-size: 16px;
     border-radius: 5px;
     transition: background-color 0.3s ease;
     font-weight: bold;
+    max-width: 100%; /* Ensure it does not exceed the width of the parent */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }
 
 .download-link:hover {
@@ -88,6 +93,17 @@ button:hover {
 
 .download-link:active {
     background-color: #3e8e41;
+}
+
+@media (max-width: 600px) {
+    .card {
+        padding: 10px;
+    }
+    
+    .download-link {
+        font-size: 14px; /* Adjust font size for smaller screens */
+        padding: 8px 15px; /* Adjust padding for smaller screens */
+    }
 }
 
 .delete-button {
@@ -109,4 +125,34 @@ button:hover {
 li:hover {
     background-color: #f1f1f1;
     border-color: #ddd;
+}
+
+/* Progress bar styling */
+#progressContainer {
+    margin-top: 20px;
+    text-align: center;
+}
+
+progress {
+    width: 100%;
+    height: 20px;
+    border-radius: 5px;
+    appearance: none;
+}
+
+progress::-webkit-progress-bar {
+    background-color: #f4f4f4;
+    border-radius: 5px;
+}
+
+progress::-webkit-progress-value {
+    background-color: #4CAF50;
+    border-radius: 5px;
+}
+
+#progressText {
+    display: block;
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
 }
