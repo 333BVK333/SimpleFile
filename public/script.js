@@ -121,3 +121,4 @@ document.getElementById('searchForm')?.addEventListener('submit', async (e) => {
         document.getElementById('message').textContent = data.message;
     }
 });
+
