@@ -1,10 +1,7 @@
-// Handle file upload
-document.getElementById('uploadForm')?.addEventListener('submit', async (e) => {
+document.getElementById('uploadForm')?.addEventListener('submit', (e) => {
     e.preventDefault();
     const formData = new FormData();
     const files = document.getElementById('file').files;
-
-    console.log(files)
 
     if (files.length === 0) {
         document.getElementById('message').innerHTML = 'Please select a file to upload.';
@@ -15,31 +12,53 @@ document.getElementById('uploadForm')?.addEventListener('submit', async (e) => {
         formData.append('files', file);
     }
 
-    console.log(formData)
+    // Clear previous messages and show progress bar
+    document.getElementById('message').innerHTML = '';
+    document.getElementById('progressContainer').style.display = 'block';
+    const progressBar = document.getElementById('progressBar');
+    const progressText = document.getElementById('progressText');
 
-    try {
-        const response = await fetch('/upload', {
-            method: 'POST',
-            body: formData,
-        });
+    // Use XMLHttpRequest for better control over the upload progress
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', '/upload', true);
 
-        if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.message);
+    // Update the progress bar as the file is being uploaded
+    xhr.upload.addEventListener('progress', (e) => {
+        if (e.lengthComputable) {
+            const percentComplete = Math.round((e.loaded / e.total) * 100);
+            progressBar.value = percentComplete;  // Update progress bar
+            progressText.textContent = `${percentComplete}% uploaded`;  // Update text
+        }
+    });
+
+    // Handle the upload completion
+    xhr.onload = () => {
+        if (xhr.status === 200) {
+            const data = JSON.parse(xhr.responseText);
+            document.getElementById('message').innerHTML = `
+                <div class="card">
+                    Files uploaded successfully! Unique Code: <strong>${data.uniqueCode}</strong>
+                </div>
+            `;
+        } else {
+            document.getElementById('message').innerHTML = `Error: ${xhr.responseText}`;
         }
 
-        const data = await response.json();
+        // Hide the progress bar after completion
+        document.getElementById('progressContainer').style.display = 'none';
+    };
 
-        document.getElementById('message').innerHTML = `
-            <div class="card">
-                Files uploaded successfully! Unique Code: <strong>${data.uniqueCode}</strong>
-            </div>
-        `;
-    } catch (error) {
-        console.error('Error uploading files:', error);
-        document.getElementById('message').innerHTML = `Error: ${error.message}`;
-    }
+    // Handle errors during upload
+    xhr.onerror = () => {
+        document.getElementById('message').innerHTML = `Error: An error occurred during the file upload.`;
+        document.getElementById('progressContainer').style.display = 'none';
+    };
+
+    // Send the form data (files)
+    xhr.send(formData);
 });
+
+
 
 // Handle file search and display download and delete options
 document.getElementById('searchForm')?.addEventListener('submit', async (e) => {
