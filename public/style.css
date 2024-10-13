@@ -1,3 +1,8 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
 /* style.css */
 body {
     font-family: Arial, sans-serif;
@@ -7,12 +12,54 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 89vh;
 }
+
+/* Navbar styles */
+.navbar {
+    width: 100%;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    padding: 15px 0px 10px 0px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo {
+    max-width: 80px; /* Adjust the size of the logo */
+    height: auto;
+}
+
+.caption {
+    font-size: 16px;
+    color: #333;
+    font-weight: bold;
+    margin-top: 8px;
+    text-align: center;
+}
+
+/* Add some padding to the top of the body so content doesn't get hidden under the navbar */
+body {
+    padding-top: 80px; /* Adjust this value to fit the height of the navbar */
+}
+
+/* Other existing styles */
 
 .container {
     background-color: white;
     padding: 20px;
+    margin: 50px 0 0 0;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     max-width: 500px;
@@ -58,18 +105,81 @@ button:hover {
     padding: 15px;
     margin-top: 20px;
     font-size: 18px;
+    line-height: 25px;
     color: #212529;
     word-wrap: break-word; /* This will wrap long text */
     overflow-wrap: break-word; /* This will ensure that long words break and wrap onto the next line */
 }
 
 #fileList {
-    list-style-type: none;
-    padding: 0;
+    max-height: 300px; /* Adjust the height as needed */
+    overflow-y: auto;  /* Enable vertical scrolling */
+    padding: 0 10px;   /* Add padding to match the card styles */
+    margin-top: 20px;  /* Add space between the input and file list */
 }
 
 #fileList li {
     margin-bottom: 10px;
+    padding: 10px 10px 0 10px;
+    border-bottom: 1px solid #ddd; /* Add a bottom border for better separation */
+}
+
+li:hover {
+    background-color: #f9f9f9;
+}
+
+@media (max-width: 600px) {
+    #fileList {
+        max-height: 200px; /* Reduce height for smaller screens */
+    }
+}
+
+/* File container styles */
+.file-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 95%;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.file-name {
+    flex-grow: 1;              /* Allow the filename to take available space */
+    margin-right: 10px;        /* Add some space between filename and icons */
+    font-weight: bold;
+    color: black;
+    white-space: nowrap;       /* Prevent the text from wrapping to the next line */
+    overflow: hidden;          /* Hide the overflow text */
+    text-overflow: ellipsis;   /* Add ellipsis (...) when the text overflows */
+}
+
+.download-icon, .delete-icon {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    margin-left: 10px; /* Space between icons */
+}
+
+/* Circular progress bar */
+.progress-circle {
+    position: relative;
+    width: 150px;
+    height: 50px;
+    border-radius: 50%;
+    background: conic-gradient(#ddd 0deg, #ddd 360deg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.progress-text {
+    position: absolute;
+    font-size: 12px;
+    font-weight: bold;
+    color: black;
 }
 
 .download-link {
@@ -125,6 +235,7 @@ button:hover {
 li:hover {
     background-color: #f1f1f1;
     border-color: #ddd;
+    border-radius: 8px;
 }
 
 /* Progress bar styling */
