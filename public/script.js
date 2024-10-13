@@ -22,10 +22,10 @@ document.getElementById('uploadForm')?.addEventListener('submit', async (e) => {
     let totalSize = 0;
     for (let file of files) {
         totalSize += file.size;
+
         // Check if the single file exceeds 8MB
-        if (file.size > 8 * 1024 * 1024) {
+        if (files.length === 1 && file.size > 8 * 1024 * 1024) {
             document.getElementById('message').innerHTML = 'Each file must be less than 8MB.';
-            document.getElementById('file').value = '';
             return;
         }
     }
@@ -33,10 +33,10 @@ document.getElementById('uploadForm')?.addEventListener('submit', async (e) => {
     // Check if total size exceeds 20MB for multiple files
     if (files.length > 1 && totalSize > 20 * 1024 * 1024) {
         document.getElementById('message').innerHTML = 'Total file size must be less than 20MB.';
-        document.getElementById('file').value = '';
         return;
     }
 
+    // Append files to FormData for upload
     for (let file of files) {
         formData.append('files', file);
     }
