@@ -8,21 +8,29 @@
     <link rel="icon" type="image/png" href="/favicon.png">
 </head>
 <body>
+    <!-- Navbar Section -->
+    <nav class="navbar">
+        <div class="logo-container">
+            <img src="/favicon.png" alt="Website Logo" class="logo">
+            <p class="caption">Effortless File Management, Seamless Uploads – Your Files, Anytime, Anywhere</p>
+        </div>
+    </nav>
+
     <div class="container">
         <h1>Upload Files</h1>
         <form id="uploadForm">
             <input type="file" id="file" multiple>
             <button type="submit">Upload</button>
+            <button type="button" id="cancelUpload" style="background-color: red;">Cancel Upload</button> <!-- Cancel Button -->
         </form>
-
-        <!-- Progress Bar Section -->
+        <div id="message"></div>
+        <div id="uniqueCodeContainer" style="display: none;">
+            <p>Unique Code: <span id="uniqueCodeDisplay"></span></p>
+        </div>        
         <div id="progressContainer" style="display: none;">
             <progress id="progressBar" value="0" max="100"></progress>
             <span id="progressText">0% uploaded</span>
-        </div>
-
-        <!-- Message Section -->
-        <div id="message"></div>
+        </div>        
     </div>
     <script src="/script.js"></script>
 </body>
