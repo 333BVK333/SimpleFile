@@ -1,37 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Upload Files</title>
-    <link rel="stylesheet" href="/style.css">
-    <link rel="icon" type="image/png" href="/favicon.png">
-</head>
-<body>
-    <!-- Navbar Section -->
-    <nav class="navbar">
-        <div class="logo-container">
-            <img src="/favicon.png" alt="Website Logo" class="logo">
-            <p class="caption">Effortless File Management, Seamless Uploads – Your Files, Anytime, Anywhere</p>
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+  </head>
+  <body>
+    <div class="body">
+      <nav class="navbar">
+        <a href="/" class="navbar-logo">
+          <img src="\favicon.png" alt="SimpleFile Logo" />
+          SimpleFile
+        </a>
+        <div class="navbar-links">
+          <a href="/">Home</a>
+          <a href="/upload">Upload File</a>
+          <a href="/search">Access File</a>
+          <a href="#about">About Us</a>
         </div>
-    </nav>
-
-    <div class="container">
-        <h1>Upload Files</h1>
-        <form id="uploadForm">
-            <input type="file" id="file" multiple>
+        <a href="#signup" class="btn">Uploader</a>
+      </nav>
+      <div class="box">
+        <div class="container">
+          <h1>Upload Files</h1>
+          <form id="uploadForm">
+            <input type="file" id="file" multiple />
             <button type="submit">Upload</button>
-            <button type="button" id="cancelUpload" style="background-color: red;">Cancel Upload</button> <!-- Cancel Button -->
-        </form>
-        <div id="message"></div>
-        <div id="uniqueCodeContainer" style="display: none;">
+            <button
+              type="button"
+              id="cancelUpload"
+              style="background-color: red"
+            >
+              Cancel Upload
+            </button>
+          </form>
+          <div id="message"></div>
+          <div id="uniqueCodeContainer" style="display: none">
             <p>Unique Code: <span id="uniqueCodeDisplay"></span></p>
-        </div>        
-        <div id="progressContainer" style="display: none;">
+          </div>
+          <div id="progressContainer" style="display: none">
             <progress id="progressBar" value="0" max="100"></progress>
             <span id="progressText">0% uploaded</span>
-        </div>        
+          </div>
+        </div>
+      </div>
     </div>
+    <div class="foot">All Rights are Reserved to SimpleFile</div>
     <script src="/script.js"></script>
-</body>
+  </body>
 </html>
