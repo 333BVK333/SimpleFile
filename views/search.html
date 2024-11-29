@@ -1,28 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Search Files</title>
-    <link rel="stylesheet" href="/style.css">
-    <link rel="icon" type="image/png" href="/favicon.png">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=download" />
-</head>
-<body>
-    <nav class="navbar">
-        <div class="logo-container">
-            <img src="/favicon.png" alt="Website Logo" class="logo">
-            <p class="caption">Effortless File Management, Seamless Uploads – Your Files, Anytime, Anywhere</p>
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=download"
+    />
+  </head>
+  <body>
+    <div class="search-body">
+      <nav class="navbar">
+        <a href="/" class="navbar-logo">
+          <img src="\favicon.png" alt="SimpleFile Logo" />
+          SimpleFile
+        </a>
+        <div class="navbar-links">
+          <a href="/">Home</a>
+          <a href="/upload">Upload File</a>
+          <a href="/search">Access File</a>
+          <a href="#about">About Us</a>
         </div>
-    </nav>
-    <div class="container">
-        <h1>Search Files</h1>
-        <form id="searchForm">
-            <input type="text" id="uniqueCode" placeholder="Enter File Fetching Code (FFC) " autofocus>
+        <a href="#signup" class="btn">Uploader</a>
+      </nav>
+      <div class="box search-box">
+        <div class="container">
+          <h1>Search Files</h1>
+          <form id="searchForm">
+            <input
+              type="text"
+              id="uniqueCode"
+              placeholder="Enter File Fetching Code (FFC) "
+              autofocus
+            />
             <button type="submit">Search</button>
-        </form>
-        <div id="message"></div>
+          </form>
+          <div id="message"></div>
+        </div>
+      </div>
     </div>
+    <div class="foot">All Rights are Reserved to SimpleFile</div>
     <script src="/script.js"></script>
-</body>
+  </body>
 </html>
