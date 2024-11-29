@@ -11,8 +11,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
-// MongoDB connection
-const mongoURI = process.env.MONGO_URL; // You can replace this with process.env.MONGO_URL if using .env
+const mongoURI = process.env.MONGO_URL; 
 const conn = mongoose.createConnection(mongoURI);
 
 let gridFSBucket;
@@ -23,24 +22,20 @@ conn.once('open', () => {
     console.log('Connected to MongoDB and GridFSBucket initialized');
 });
 
-// Multer storage using memoryStorage
-const storage = multer.memoryStorage(); // Files are stored in memory
+const storage = multer.memoryStorage(); 
 const upload = multer({ storage }).array('files');
 
-// Helper to generate a 6-digit unique code
 const generateUniqueCode = () => {
-    return Math.floor(100000 + Math.random() * 900000).toString(); // 6-digit code
+    return Math.floor(100000 + Math.random() * 900000).toString(); 
 };
 
-// Route to upload files and generate unique code
 app.post('/upload', (req, res) => {
-    const uniqueCode = generateUniqueCode(); // Generate the unique code early
-    res.json({ uniqueCode }); // Send unique code to client first
+    const uniqueCode = generateUniqueCode(); 
+    res.json({ uniqueCode }); 
 });
 
-// New route to handle file upload after receiving the unique code
 app.post('/uploadWithCode/:uniqueCode', (req, res) => {
-    const uniqueCode = req.params.uniqueCode; // Get the unique code from the request
+    const uniqueCode = req.params.uniqueCode; 
 
     upload(req, res, async (err) => {
         if (err) {
@@ -58,7 +53,7 @@ app.post('/uploadWithCode/:uniqueCode', (req, res) => {
                     const uploadStream = gridFSBucket.openUploadStream(file.originalname, {
                         metadata: {
                             uniqueCode: uniqueCode,
-                            uploadDate: new Date(), // Add the upload date to the metadata
+                            uploadDate: new Date(), 
                         },
                     });
 
@@ -77,7 +72,6 @@ app.post('/uploadWithCode/:uniqueCode', (req, res) => {
 
             await Promise.all(fileUploads);
 
-            // Send confirmation after successful uploads
             res.json({ uniqueCode: uniqueCode, message: 'Files uploaded successfully!' });
 
         } catch (uploadErr) {
@@ -87,10 +81,8 @@ app.post('/uploadWithCode/:uniqueCode', (req, res) => {
     });
 });
 
-// Route to delete files by unique code
-// Route to delete files by unique code
 app.post('/deleteByUniqueCode', async (req, res) => {
-    const { uniqueCode } = req.body; // Expecting uniqueCode in the request body
+    const { uniqueCode } = req.body;
     console.log('Received request to delete by unique code:', req.body);
 
     console.log(uniqueCode);
@@ -100,16 +92,14 @@ app.post('/deleteByUniqueCode', async (req, res) => {
     }
 
     try {
-        // Find all files with the given unique code
         const files = await gridFSBucket.find({ 'metadata.uniqueCode': uniqueCode }).toArray();
 
         if (files.length === 0) {
             return res.status(404).json({ message: 'No files found with the given unique code.' });
         }
 
-        // Delete each file using its _id
         for (const file of files) {
-            await gridFSBucket.delete(file._id); // Delete the file by its _id
+            await gridFSBucket.delete(file._id); 
         }
 
         res.json({ message: 'Partial uploads deleted successfully.' });
@@ -119,7 +109,6 @@ app.post('/deleteByUniqueCode', async (req, res) => {
     }
 });
 
-// Search route to fetch all files by unique code
 app.post('/search', async (req, res) => {
     const uniqueCode = req.body.uniqueCode;
 
@@ -134,7 +123,6 @@ app.post('/search', async (req, res) => {
             return res.status(404).json({ message: 'Files not found!' });
         }
 
-        // Return list of filenames and IDs to the client to download individually
         const fileData = files.map(file => ({
             filename: file.filename,
             id: file._id
@@ -146,13 +134,11 @@ app.post('/search', async (req, res) => {
     }
 });
 
-// Route to download an individual file by ID
 app.get('/download/:id', async (req, res) => {
     const fileId = req.params.id;
     console.log('Download request for file ID:', fileId);
 
     try {
-        // Fetch the file from GridFS by ID
         const file = await gridFSBucket.find({ _id: new mongoose.Types.ObjectId(fileId) }).toArray();
 
         if (!file || file.length === 0) {
@@ -162,16 +148,13 @@ app.get('/download/:id', async (req, res) => {
 
         const fileData = file[0];
 
-        // Set headers
         res.set('Content-Type', fileData.contentType || 'application/octet-stream');
         res.set('Content-Disposition', `attachment; filename="${fileData.filename}"`);
 
-        // Set the Content-Length header using file size from metadata
         if (fileData.length) {
             res.set('Content-Length', fileData.length);
         }
 
-        // Create a read stream from GridFS
         const readStream = gridFSBucket.openDownloadStream(fileData._id);
 
         readStream.on('error', (error) => {
@@ -179,7 +162,6 @@ app.get('/download/:id', async (req, res) => {
             return res.status(500).json({ message: 'Error downloading file', error: error });
         });
 
-        // Pipe the file content to the response
         readStream.pipe(res);
     } catch (err) {
         console.error('Error during download:', err);
@@ -187,8 +169,7 @@ app.get('/download/:id', async (req, res) => {
     }
 });
 
-// Background job to delete files older than 6 hours
-cron.schedule('0 * * * *', async () => { // Runs every hour
+cron.schedule('0 * * * *', async () => { 
     console.log('Running cleanup task to delete files older than 6 hours');
 
     try {
@@ -198,7 +179,7 @@ cron.schedule('0 * * * *', async () => { // Runs every hour
         files.forEach((file) => {
             const fileAgeInHours = (currentTime - new Date(file.metadata.uploadDate)) / (1000 * 60 * 60);
 
-            if (fileAgeInHours > 6) { // Delete files older than 6 hours
+            if (fileAgeInHours > 6) { 
                 gridFSBucket.delete(file._id, (err) => {
                     if (err) {
                         console.error('Error deleting file:', err);
@@ -213,7 +194,6 @@ cron.schedule('0 * * * *', async () => { // Runs every hour
     }
 });
 
-// Route to delete an individual file by ID
 app.delete('/delete/:id', async (req, res) => {
     const fileId = req.params.id;
 
@@ -226,7 +206,6 @@ app.delete('/delete/:id', async (req, res) => {
     }
 });
 
-// Serve HTML pages
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'views', 'index.html'));
 });
@@ -239,7 +218,6 @@ app.get('/search', (req, res) => {
     res.sendFile(path.join(__dirname, 'views', 'search.html'));
 });
 
-// Start server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
