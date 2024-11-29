@@ -1,269 +1,320 @@
 * {
-    padding: 0;
-    margin: 0;
+  padding: 0;
+  margin: 0;
 }
 
-/* style.css */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 89vh;
+.body {
+  width: 100vw;
+  height: 93vh;
 }
 
-/* Navbar styles */
+.search-body {
+  width: 100vw;
+  min-height: 93vh;
+}
+
 .navbar {
-    width: 100%;
-    background-color: #ffffff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow effect */
-    padding: 15px 0px 10px 0px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    display: flex;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: white;
+  border-bottom: 1px solid #ccc;
+  font-family: Arial, sans-serif;
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: black;
+  text-decoration: none;
+}
+
+.navbar-logo img {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 20px;
+}
+
+.navbar-links a {
+  text-decoration: none;
+  color: black;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.navbar-links a:hover {
+  color: grey;
+}
+
+.btn {
+  padding: 8px 16px;
+  border: 1px solid black;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.9em;
+  background-color: black;
+  color: white;
+  transition: all 0.3s;
+}
+
+.btn:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .navbar-links {
+    display: none;
+  }
+}
+
+@media (max-width: 340px) {
+  .btn {
+    display: none;
+  }
+
+  .navbar {
+    align-items: center;
     justify-content: center;
-    align-items: center;
+  }
 }
 
-.logo-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.box {
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.logo {
-    max-width: 80px; /* Adjust the size of the logo */
-    height: auto;
+.search-box {
+    margin: 0 0 20px 0;
 }
-
-.caption {
-    font-size: 16px;
-    color: #333;
-    font-weight: bold;
-    margin-top: 8px;
-    text-align: center;
-}
-
-/* Add some padding to the top of the body so content doesn't get hidden under the navbar */
-body {
-    padding-top: 80px; /* Adjust this value to fit the height of the navbar */
-}
-
-/* Other existing styles */
 
 .container {
-    background-color: white;
-    padding: 20px;
-    margin: 50px 0 0 0;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 500px;
-    width: 100%;
-    text-align: center;
+  background-color: white;
+  padding: 20px;
+  margin: 60px 0 0 0;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
 }
 
 h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
+  font-size: 24px;
+  margin-bottom: 20px;
 }
 
 input[type="file"],
 input[type="text"],
 button {
-    width: 95%;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 5px;
-    border: 1px solid #ddd;
+  width: 95%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #ddd;
 }
 
 button {
-    background-color: #28a745;
-    color: white;
-    border: none;
-    cursor: pointer;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  cursor: pointer;
 }
 
 button:hover {
-    background-color: #218838;
+  background-color: #218838;
+}
+
+.foot {
+  width: 100vw;
+  height: 20px;
+  background-color: black;
+  line-height: 20px;
+  line-height: 20px;
+  font-size: 15px;
+  text-align: center;
+  color: white;
+  padding: 8px 0 8px 0;
 }
 
 #message {
-    margin-top: 20px;
-    font-size: 18px;
-    color: #333;
+  margin-top: 20px;
+  font-size: 18px;
+  color: #333;
 }
 
 .card {
-    background-color: #e9ecef;
-    border-radius: 10px;
-    padding: 15px;
-    margin-top: 20px;
-    font-size: 18px;
-    line-height: 25px;
-    color: #212529;
-    word-wrap: break-word; /* This will wrap long text */
-    overflow-wrap: break-word; /* This will ensure that long words break and wrap onto the next line */
+  background-color: #e9ecef;
+  border-radius: 10px;
+  padding: 15px;
+  margin-top: 20px;
+  font-size: 18px;
+  line-height: 25px;
+  color: #212529;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 #fileList {
-    max-height: 300px; /* Adjust the height as needed */
-    overflow-y: auto;  /* Enable vertical scrolling */
-    padding: 0 10px;   /* Add padding to match the card styles */
-    margin-top: 20px;  /* Add space between the input and file list */
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 0 10px;
+  margin-top: 20px;
 }
 
 #fileList li {
-    margin-bottom: 10px;
-    padding: 10px 10px 0 10px;
-    border-bottom: 1px solid #ddd; /* Add a bottom border for better separation */
+  margin-bottom: 10px;
+  padding: 10px 10px 0 10px;
+  border-bottom: 1px solid #ddd;
 }
 
 li:hover {
-    background-color: #f9f9f9;
+  background-color: #f9f9f9;
 }
 
 @media (max-width: 600px) {
-    #fileList {
-        max-height: 200px; /* Reduce height for smaller screens */
-    }
+  #fileList {
+    max-height: 200px;
+  }
 }
 
-/* File container styles */
 .file-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 95%;
-    border: 1px solid #ddd;
-    padding: 10px;
-    margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 95%;
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 10px;
 }
 
 .file-name {
-    flex-grow: 1;              /* Allow the filename to take available space */
-    margin-right: 10px;        /* Add some space between filename and icons */
-    font-weight: bold;
-    color: black;
-    white-space: nowrap;       /* Prevent the text from wrapping to the next line */
-    overflow: hidden;          /* Hide the overflow text */
-    text-overflow: ellipsis;   /* Add ellipsis (...) when the text overflows */
+  flex-grow: 1;
+  margin-right: 10px;
+  font-weight: bold;
+  color: black;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.download-icon, .delete-icon {
-    width: 24px;
-    height: 24px;
-    cursor: pointer;
-    margin-left: 10px; /* Space between icons */
+.download-icon,
+.delete-icon {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  margin-left: 10px;
 }
 
-/* Circular progress bar */
 .progress-circle {
-    position: relative;
-    width: 150px;
-    height: 50px;
-    border-radius: 50%;
-    background: conic-gradient(#ddd 0deg, #ddd 360deg);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: 10px;
+  position: relative;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: conic-gradient(#ddd 0deg, #ddd 360deg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
 }
 
 .progress-text {
-    position: absolute;
-    font-size: 12px;
-    font-weight: bold;
-    color: black;
+  position: absolute;
+  font-size: 12px;
+  font-weight: bold;
+  color: black;
 }
 
 .download-link {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    overflow: hidden;
-    text-decoration: none;
-    font-size: 16px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-    font-weight: bold;
-    max-width: 100%; /* Ensure it does not exceed the width of the parent */
-    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  overflow: hidden;
+  text-decoration: none;
+  font-size: 16px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  font-weight: bold;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .download-link:hover {
-    background-color: #45a049;
+  background-color: #45a049;
 }
 
 .download-link:active {
-    background-color: #3e8e41;
+  background-color: #3e8e41;
 }
 
 @media (max-width: 600px) {
-    .card {
-        padding: 10px;
-    }
-    
-    .download-link {
-        font-size: 14px; /* Adjust font size for smaller screens */
-        padding: 8px 15px; /* Adjust padding for smaller screens */
-    }
+  .card {
+    padding: 10px;
+  }
+
+  .download-link {
+    font-size: 14px;
+    padding: 8px 15px;
+  }
 }
 
 .delete-button {
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 8px 12px;
-    font-size: 14px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .delete-button:hover {
-    background-color: #c82333;
+  background-color: #c82333;
 }
 
-/* Style for the file item container */
 li:hover {
-    background-color: #f1f1f1;
-    border-color: #ddd;
-    border-radius: 8px;
+  background-color: #f1f1f1;
+  border-color: #ddd;
+  border-radius: 8px;
 }
 
-/* Progress bar styling */
 #progressContainer {
-    margin-top: 20px;
-    text-align: center;
+  margin-top: 20px;
+  text-align: center;
 }
 
 progress {
-    width: 100%;
-    height: 20px;
-    border-radius: 5px;
-    appearance: none;
+  width: 100%;
+  height: 20px;
+  border-radius: 5px;
+  appearance: none;
 }
 
 progress::-webkit-progress-bar {
-    background-color: #f4f4f4;
-    border-radius: 5px;
+  background-color: #f4f4f4;
+  border-radius: 5px;
 }
 
 progress::-webkit-progress-value {
-    background-color: #4CAF50;
-    border-radius: 5px;
+  background-color: #4caf50;
+  border-radius: 5px;
 }
 
 #progressText {
-    display: block;
-    margin-top: 10px;
-    font-size: 18px;
-    font-weight: bold;
+  display: block;
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: bold;
 }
