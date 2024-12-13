@@ -1,16 +1,17 @@
 * {
   padding: 0;
   margin: 0;
+  font-family: Arial, sans-serif;
 }
 
 .body {
   width: 100vw;
-  height: 93vh;
+  height: 95vh;
 }
 
 .search-body {
   width: 100vw;
-  min-height: 93vh;
+  min-height: 95vh;
 }
 
 .navbar {
@@ -20,7 +21,6 @@
   padding: 10px 20px;
   background-color: white;
   border-bottom: 1px solid #ccc;
-  font-family: Arial, sans-serif;
 }
 
 .navbar-logo {
@@ -46,6 +46,7 @@
 .navbar-links a {
   text-decoration: none;
   color: black;
+  font-size: 18px;
   font-weight: 500;
   transition: color 0.3s;
 }
@@ -89,24 +90,28 @@
 
 .box {
   width: 100vw;
+  height: 85vh;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .search-box {
-    margin: 0 0 20px 0;
+  height: 78vh;
 }
 
 .container {
   background-color: white;
   padding: 20px;
-  margin: 60px 0 0 0;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   max-width: 500px;
   width: 100%;
   text-align: center;
+}
+
+.search-container {
+  margin: 12px 0 0 0;
 }
 
 h1 {
@@ -166,7 +171,7 @@ button:hover {
 }
 
 #fileList {
-  max-height: 300px;
+  max-height: 28vh;
   overflow-y: auto;
   padding: 0 10px;
   margin-top: 20px;
@@ -317,4 +322,73 @@ progress::-webkit-progress-value {
   margin-top: 10px;
   font-size: 18px;
   font-weight: bold;
+}
+
+.about-box {
+  width: calc(100vw-120px);
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: white;
+}
+
+.about-container {
+  max-width: 800px;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.about-container h1 {
+  font-size: 2.2em;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+}
+
+.about-container p {
+  font-size: 1em;
+  margin: 10px 0;
+  text-align: center;
+}
+
+.about-container ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+.about-containert ul li {
+  margin-bottom: 10px;
+  font-size: 1em;
+}
+
+.about-container a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.about-container a:hover {
+  text-decoration: underline;
+}
+
+.video-section {
+  margin-top: 30px;
+}
+
+.video-section h2 {
+  font-size: 1.8em;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.video-section video {
+  display: block;
+  max-width: 100%;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
